@@ -1,0 +1,62 @@
+{
+    "name": "gosuperscript/filament-codemirror-plugin",
+    "description": "A Filament v4 form component for editing code through CodeMirror with configurable extensions and language support",
+    "keywords": [
+        "filament",
+        "codemirror",
+        "form",
+        "code-editor",
+        "laravel"
+    ],
+    "homepage": "https://github.com/gosuperscript/filament-codemirror-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "gosuperscript",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1|^8.2|^8.3",
+        "filament/filament": "^3.0",
+        "spatie/laravel-package-tools": "^1.15.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "nunomaduro/collision": "^7.9|^8.0",
+        "orchestra/testbench": "^8.0|^9.0",
+        "pestphp/pest": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gosuperscript\\FilamentCodemirror\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Gosuperscript\\FilamentCodemirror\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gosuperscript\\FilamentCodemirror\\FilamentCodemirrorServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
