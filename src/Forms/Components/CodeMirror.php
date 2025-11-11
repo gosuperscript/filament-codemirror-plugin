@@ -2,8 +2,8 @@
 
 namespace Gosuperscript\FilamentCodemirror\Forms\Components;
 
-use Filament\Forms\Components\Field;
 use Closure;
+use Filament\Forms\Components\Field;
 
 class CodeMirror extends Field
 {
@@ -32,7 +32,7 @@ class CodeMirror extends Field
     /**
      * Set the CodeMirror extensions to use.
      */
-    public function extensions(array | Closure $extensions): static
+    public function extensions(array|Closure $extensions): static
     {
         $this->extensions = $this->evaluate($extensions);
 
@@ -50,7 +50,7 @@ class CodeMirror extends Field
     /**
      * Set the language mode (e.g., 'javascript', 'php', 'python', 'html', 'css', 'sql', 'markdown').
      */
-    public function language(string | Closure | null $language): static
+    public function language(string|Closure|null $language): static
     {
         $this->language = $this->evaluate($language);
 
@@ -68,7 +68,7 @@ class CodeMirror extends Field
     /**
      * Set the theme (e.g., 'default', 'dark', 'light', or custom theme name).
      */
-    public function theme(string | Closure $theme): static
+    public function theme(string|Closure $theme): static
     {
         $this->theme = $this->evaluate($theme);
 
@@ -86,7 +86,7 @@ class CodeMirror extends Field
     /**
      * Enable or disable line numbers.
      */
-    public function lineNumbers(bool | Closure $condition = true): static
+    public function lineNumbers(bool|Closure $condition = true): static
     {
         $this->lineNumbers = $this->evaluate($condition);
 
@@ -104,7 +104,7 @@ class CodeMirror extends Field
     /**
      * Enable or disable line wrapping.
      */
-    public function lineWrapping(bool | Closure $condition = true): static
+    public function lineWrapping(bool|Closure $condition = true): static
     {
         $this->lineWrapping = $this->evaluate($condition);
 
@@ -122,7 +122,7 @@ class CodeMirror extends Field
     /**
      * Set the component to read-only mode.
      */
-    public function readOnly(bool | Closure $condition = true): static
+    public function readOnly(bool|Closure $condition = true): static
     {
         $this->readOnly = $this->evaluate($condition);
 
@@ -140,7 +140,7 @@ class CodeMirror extends Field
     /**
      * Set the tab size (spaces per tab).
      */
-    public function tabSize(int | Closure $size): static
+    public function tabSize(int|Closure $size): static
     {
         $this->tabSize = $this->evaluate($size);
 
@@ -158,7 +158,7 @@ class CodeMirror extends Field
     /**
      * Set the minimum height in pixels.
      */
-    public function minHeight(int | Closure $height): static
+    public function minHeight(int|Closure $height): static
     {
         $this->minHeight = $this->evaluate($height);
 
@@ -176,7 +176,7 @@ class CodeMirror extends Field
     /**
      * Set the maximum height in pixels.
      */
-    public function maxHeight(int | Closure $height): static
+    public function maxHeight(int|Closure $height): static
     {
         $this->maxHeight = $this->evaluate($height);
 
@@ -194,7 +194,7 @@ class CodeMirror extends Field
     /**
      * Set custom CodeMirror configuration options.
      */
-    public function configuration(array | Closure $config): static
+    public function configuration(array|Closure $config): static
     {
         $this->customConfiguration = $this->evaluate($config);
 
