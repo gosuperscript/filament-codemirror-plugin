@@ -3,5 +3,3 @@ parameters:
     paths:
         - src
     tmpDir: build/phpstan
-    ignoreErrors:
-        - '#Call to an undefined method Filament\\Forms\\Components\\Field::evaluate\(\)#'

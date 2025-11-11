@@ -5,6 +5,9 @@ namespace Superscript\FilamentCodemirror\Forms\Components;
 use Closure;
 use Filament\Forms\Components\Field;
 
+/**
+ * @method mixed evaluate(mixed $value)
+ */
 class CodeMirror extends Field
 {
     protected string $view = 'filament-codemirror::forms.components.codemirror';
