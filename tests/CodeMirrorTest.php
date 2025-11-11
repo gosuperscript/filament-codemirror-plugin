@@ -1,6 +1,6 @@
 <?php
 
-use Gosuperscript\FilamentCodemirror\Forms\Components\CodeMirror;
+use Superscript\FilamentCodemirror\Forms\Components\CodeMirror;
 
 it('can create a CodeMirror component', function () {
     $component = CodeMirror::make('code');

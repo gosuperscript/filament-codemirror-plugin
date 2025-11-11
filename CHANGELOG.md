@@ -6,25 +6,31 @@ All notable changes to `filament-codemirror-plugin` will be documented in this f
 
 ### Added
 - Initial release of Filament CodeMirror Plugin
-- CodeMirror form component for Filament v3
-- Support for multiple programming languages:
+- CodeMirror form component for Filament v4
+- Dynamic language loading supporting all CodeMirror 6 language packages:
   - JavaScript/TypeScript
-  - Python
-  - PHP
-  - HTML/CSS
-  - JSON
+  - Python, PHP, Java, C++, Rust, Go, Ruby
+  - HTML/CSS/XML
+  - JSON, YAML, TOML
   - SQL
   - Markdown
-  - XML
+  - And many more...
+- Dynamic theme loading supporting all CodeMirror 6 themes
 - Configurable editor options:
   - Line numbers toggle
   - Line wrapping toggle
   - Read-only mode
   - Custom tab size
   - Min/max height constraints
-- Theme support (default and dark mode)
 - Custom extensions support
 - Comprehensive test suite with Pest
+- PHPStan static analysis
+- GitHub Actions CI/CD pipeline
 - Complete documentation with usage examples
 - Example Filament Resource implementation
 - Service provider with config file publishing
+
+### Changed
+- Namespace changed from `Gosuperscript` to `Superscript`
+- Updated to support Filament 4.x
+- Made language and theme loading fully dynamic instead of hardcoded switch statements

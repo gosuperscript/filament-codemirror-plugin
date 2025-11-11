@@ -1,6 +1,6 @@
 <?php
 
-namespace Gosuperscript\FilamentCodemirror\Forms\Components;
+namespace Superscript\FilamentCodemirror\Forms\Components;
 
 use Closure;
 use Filament\Forms\Components\Field;

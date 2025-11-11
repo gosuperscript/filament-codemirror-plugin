@@ -12,3 +12,4 @@ package-lock.json
 dist/
 build/
 .pest/
+phpstan-baseline.neon

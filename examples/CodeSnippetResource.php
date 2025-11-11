@@ -8,7 +8,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Gosuperscript\FilamentCodemirror\Forms\Components\CodeMirror;
+use Superscript\FilamentCodemirror\Forms\Components\CodeMirror;
 
 class CodeSnippetResource extends Resource
 {

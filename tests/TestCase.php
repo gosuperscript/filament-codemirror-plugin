@@ -1,8 +1,8 @@
 <?php
 
-namespace Gosuperscript\FilamentCodemirror\Tests;
+namespace Superscript\FilamentCodemirror\Tests;
 
-use Gosuperscript\FilamentCodemirror\FilamentCodemirrorServiceProvider;
+use Superscript\FilamentCodemirror\FilamentCodemirrorServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra

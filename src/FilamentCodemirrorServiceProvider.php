@@ -1,6 +1,6 @@
 <?php
 
-namespace Gosuperscript\FilamentCodemirror;
+namespace Superscript\FilamentCodemirror;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;

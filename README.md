@@ -1,11 +1,11 @@
 # Filament CodeMirror Plugin
 
-A powerful and highly configurable [Filament v3](https://filamentphp.com) form component that integrates [CodeMirror 6](https://codemirror.net/) for editing code with syntax highlighting, extensions, and language support.
+A powerful and highly configurable [Filament v4](https://filamentphp.com) form component that integrates [CodeMirror 6](https://codemirror.net/) for editing code with syntax highlighting, extensions, and language support.
 
 ## Features
 
-- 🎨 **Multiple Language Support**: JavaScript, TypeScript, Python, PHP, HTML, CSS, JSON, SQL, Markdown, XML, and more
-- 🌗 **Themes**: Default, dark mode, and custom theme support
+- 🎨 **Extensive Language Support**: Supports all CodeMirror 6 language packages including JavaScript, TypeScript, Python, PHP, HTML, CSS, JSON, SQL, Markdown, XML, Java, C++, Rust, Go, and many more
+- 🌗 **Flexible Themes**: Dynamic theme loading supporting all CodeMirror 6 themes
 - ⚙️ **Highly Configurable**: Line numbers, line wrapping, tab size, height constraints, and more
 - 🔌 **Extensible**: Support for custom CodeMirror extensions
 - 🚀 **Modern**: Built on CodeMirror 6 with ESM modules
@@ -47,7 +47,7 @@ return [
 ### Basic Usage
 
 ```php
-use Gosuperscript\FilamentCodemirror\Forms\Components\CodeMirror;
+use Superscript\FilamentCodemirror\Forms\Components\CodeMirror;
 
 CodeMirror::make('code')
     ->label('Code Editor')
@@ -64,38 +64,39 @@ CodeMirror::make('javascript_code')
     ->tabSize(4)
 ```
 
-### Multiple Languages
+### Supported Languages
+
+The component dynamically loads language support from CodeMirror's official language packages. It supports all languages available in the `@codemirror/lang-*` packages:
 
 ```php
-// JavaScript
+// JavaScript/TypeScript
 CodeMirror::make('js_code')->language('javascript')
-
-// TypeScript
 CodeMirror::make('ts_code')->language('typescript')
 
-// Python
-CodeMirror::make('python_code')->language('python')
-
-// PHP
-CodeMirror::make('php_code')->language('php')
-
-// HTML
+// Web Languages
 CodeMirror::make('html_code')->language('html')
-
-// CSS
 CodeMirror::make('css_code')->language('css')
+CodeMirror::make('xml_code')->language('xml')
 
-// JSON
+// Programming Languages
+CodeMirror::make('python_code')->language('python')
+CodeMirror::make('php_code')->language('php')
+CodeMirror::make('java_code')->language('java')
+CodeMirror::make('cpp_code')->language('cpp')
+CodeMirror::make('rust_code')->language('rust')
+CodeMirror::make('go_code')->language('go')
+
+// Data Formats
 CodeMirror::make('json_code')->language('json')
+CodeMirror::make('yaml_code')->language('yaml')
 
-// SQL
+// Database
 CodeMirror::make('sql_code')->language('sql')
 
-// Markdown
+// Markup
 CodeMirror::make('markdown_code')->language('markdown')
 
-// XML
-CodeMirror::make('xml_code')->language('xml')
+// And many more - any language supported by CodeMirror 6 can be used
 ```
 
 ### With Dark Theme
@@ -186,7 +187,7 @@ use App\Models\Snippet;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Gosuperscript\FilamentCodemirror\Forms\Components\CodeMirror;
+use Superscript\FilamentCodemirror\Forms\Components\CodeMirror;
 
 class SnippetResource extends Resource
 {
@@ -239,20 +240,22 @@ class SnippetResource extends Resource
 #### `language(string|Closure|null $language)`
 Set the programming language for syntax highlighting.
 
-**Supported languages:**
-- `javascript` / `js`
-- `typescript` / `ts`
-- `python`
-- `php`
-- `html`
-- `css`
-- `json`
-- `sql`
-- `markdown` / `md`
-- `xml`
+**Dynamic Language Loading:**
+The component dynamically loads language support from CodeMirror's CDN. Any language available in the `@codemirror/lang-*` packages is supported. Common languages include:
+- JavaScript (`javascript` or `js`), TypeScript (`typescript` or `ts`)
+- Python (`python`), PHP (`php`), Java (`java`), C++ (`cpp`)
+- HTML (`html`), CSS (`css`), XML (`xml`)
+- JSON (`json`), YAML (`yaml`), TOML (`toml`)
+- SQL (`sql`), Markdown (`markdown` or `md`)
+- Rust (`rust`), Go (`go`), Ruby (`ruby`)
+- And many more...
+
+The component will attempt to load the specified language package automatically.
 
 #### `theme(string|Closure $theme)`
-Set the editor theme. Built-in options: `default`, `dark`
+Set the editor theme. The component dynamically loads themes from CodeMirror's theme packages.
+
+**Supported themes:** `default`, `dark` (oneDark), and any other CodeMirror 6 theme package available on CDN.
 
 #### `lineNumbers(bool|Closure $condition = true)`
 Enable or disable line numbers.
@@ -300,7 +303,7 @@ return [
 
 - PHP 8.1 or higher
 - Laravel 10.x or 11.x
-- Filament 3.x
+- Filament 4.x
 
 ## Credits
 

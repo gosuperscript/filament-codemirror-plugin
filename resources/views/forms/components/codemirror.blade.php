@@ -85,61 +85,79 @@
             },
             
             async loadLanguage(lang) {
+                if (!lang) return null;
+                
                 try {
-                    switch(lang) {
-                        case 'javascript':
-                        case 'js':
-                            const { javascript } = await import('https://cdn.jsdelivr.net/npm/@codemirror/lang-javascript@6.0.0/+esm');
-                            return javascript();
-                        case 'typescript':
-                        case 'ts':
-                            const { javascript: jsForTs } = await import('https://cdn.jsdelivr.net/npm/@codemirror/lang-javascript@6.0.0/+esm');
-                            return jsForTs({ typescript: true });
-                        case 'python':
-                            const { python } = await import('https://cdn.jsdelivr.net/npm/@codemirror/lang-python@6.0.0/+esm');
-                            return python();
-                        case 'html':
-                            const { html } = await import('https://cdn.jsdelivr.net/npm/@codemirror/lang-html@6.0.0/+esm');
-                            return html();
-                        case 'css':
-                            const { css } = await import('https://cdn.jsdelivr.net/npm/@codemirror/lang-css@6.0.0/+esm');
-                            return css();
-                        case 'json':
-                            const { json } = await import('https://cdn.jsdelivr.net/npm/@codemirror/lang-json@6.0.0/+esm');
-                            return json();
-                        case 'markdown':
-                        case 'md':
-                            const { markdown } = await import('https://cdn.jsdelivr.net/npm/@codemirror/lang-markdown@6.0.0/+esm');
-                            return markdown();
-                        case 'xml':
-                            const { xml } = await import('https://cdn.jsdelivr.net/npm/@codemirror/lang-xml@6.0.0/+esm');
-                            return xml();
-                        case 'sql':
-                            const { sql } = await import('https://cdn.jsdelivr.net/npm/@codemirror/lang-sql@6.0.0/+esm');
-                            return sql();
-                        case 'php':
-                            const { php } = await import('https://cdn.jsdelivr.net/npm/@codemirror/lang-php@6.0.0/+esm');
-                            return php();
-                        default:
-                            return null;
+                    // Normalize language name
+                    const langMap = {
+                        'js': 'javascript',
+                        'ts': 'typescript',
+                        'md': 'markdown',
+                    };
+                    
+                    const normalizedLang = langMap[lang] || lang;
+                    
+                    // Handle TypeScript as a special case of JavaScript
+                    if (normalizedLang === 'typescript') {
+                        const { javascript } = await import('https://cdn.jsdelivr.net/npm/@codemirror/lang-javascript@6.0.0/+esm');
+                        return javascript({ typescript: true });
                     }
+                    
+                    // Dynamically import the language package
+                    const packageUrl = `https://cdn.jsdelivr.net/npm/@codemirror/lang-${normalizedLang}@6.0.0/+esm`;
+                    const module = await import(packageUrl);
+                    
+                    // Get the language function (usually the same name as the package)
+                    const langFunction = module[normalizedLang];
+                    
+                    if (typeof langFunction === 'function') {
+                        return langFunction();
+                    }
+                    
+                    console.warn(`Language function not found for: ${normalizedLang}`);
+                    return null;
                 } catch (error) {
-                    console.error('Error loading language support:', error);
+                    console.error(`Error loading language support for '${lang}':`, error);
                     return null;
                 }
             },
             
             async loadTheme(themeName) {
+                if (!themeName || themeName === 'default') return null;
+                
                 try {
-                    switch(themeName) {
-                        case 'dark':
-                            const { oneDark } = await import('https://cdn.jsdelivr.net/npm/@codemirror/theme-one-dark@6.0.0/+esm');
-                            return oneDark;
-                        default:
-                            return null;
+                    // Map common theme names
+                    const themeMap = {
+                        'dark': 'theme-one-dark',
+                        'oneDark': 'theme-one-dark',
+                        'oneLight': 'theme-one-light',
+                        'light': 'theme-one-light',
+                    };
+                    
+                    const themePackage = themeMap[themeName] || themeName;
+                    
+                    // Dynamically import the theme package
+                    const packageUrl = `https://cdn.jsdelivr.net/npm/@codemirror/${themePackage}@6.0.0/+esm`;
+                    const module = await import(packageUrl);
+                    
+                    // For oneDark theme
+                    if (module.oneDark) {
+                        return module.oneDark;
                     }
+                    
+                    // For other themes, try to find the main export
+                    const themeExport = Object.values(module).find(exp => 
+                        exp && typeof exp === 'object' && exp.extension
+                    );
+                    
+                    if (themeExport) {
+                        return themeExport;
+                    }
+                    
+                    console.warn(`Theme not found in module: ${themeName}`);
+                    return null;
                 } catch (error) {
-                    console.error('Error loading theme:', error);
+                    console.error(`Error loading theme '${themeName}':`, error);
                     return null;
                 }
             }
