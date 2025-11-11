@@ -34,7 +34,7 @@ class CodeMirror extends Field
      */
     public function extensions(array|Closure $extensions): static
     {
-        $this->extensions = $this->evaluate($extensions);
+        $this->extensions = $this->evaluate($extensions) ?? [];
 
         return $this;
     }
@@ -196,7 +196,7 @@ class CodeMirror extends Field
      */
     public function configuration(array|Closure $config): static
     {
-        $this->customConfiguration = $this->evaluate($config);
+        $this->customConfiguration = $this->evaluate($config) ?? [];
 
         return $this;
     }
@@ -227,6 +227,6 @@ class CodeMirror extends Field
             'customConfiguration' => $this->getConfiguration(),
         ];
 
-        return json_encode($config);
+        return json_encode($config, JSON_THROW_ON_ERROR);
     }
 }
